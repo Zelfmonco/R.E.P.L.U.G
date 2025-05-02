@@ -1,5 +1,7 @@
 # R.E.P.L.U.G INITIAL RELEASE
 ## Version 1.0.0
+Connect your sex toys to R.E.P.O.!
+
 ### Additions:
 - Vibrate on camera shake
 - Vibrate on crouch / stand
@@ -8,3 +10,6 @@
 - Vibrate on gunshot
 - Ability to toggle all options
 - Ability to Adjust all options
+
+**REQUIRES BEPINEX AND REPOLIB AS DEPENDENCIES **
+**REQUIRES INTIFACE CENTERAL TO CONNECT TO DEVICES**
