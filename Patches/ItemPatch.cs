@@ -12,7 +12,7 @@ namespace Replug.Patches
         private static void GunVibration(CameraShake __instance)
         {
             if (Config.GunToggle.Value)
-                ReplugMod.DeviceManager.VibrateAllWithDuration(Config.GunIntensity.Value * 5 / 100, 0.25f);
+                ReplugMod.DeviceManager.VibrateAllWithDuration((float)Config.GunIntensity.Value / 20, 0.25f);
         }
 
 

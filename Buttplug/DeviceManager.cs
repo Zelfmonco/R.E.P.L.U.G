@@ -8,8 +8,10 @@ namespace Replug
 {
     public class DeviceManager
     {
-        private List<ButtplugClientDevice> ConnectedDevices {  get; set; }
-        private ButtplugClient ButtplugClient { get; set; }
+        public List<ButtplugClientDevice> ConnectedDevices {  get; set; }
+        public ButtplugClient ButtplugClient { get; set; }
+
+        public bool isVibing = false;
 
         public DeviceManager(string clientName)
         {
@@ -60,20 +62,20 @@ namespace Replug
 
         public void VibrateAllWithDuration(double intensity, float time)
         {
-            intensity *= Config.VibeAmp.Value;
 
             async void Repeat(ButtplugClientDevice device)
             {
                 await device.VibrateAsync(Mathf.Clamp((float)intensity, 0f, 1.0f));
+                isVibing = true;
                 await Task.Delay((int)(time * 1000f));
                 await device.VibrateAsync(0.0f);
+                isVibing = false;
             }
             ConnectedDevices.ForEach(Repeat);
         }
 
         public void VibrateAllDevices(double intensity)
         {
-            intensity *= Config.VibeAmp.Value;
 
             async void Repeat(ButtplugClientDevice device)
             {

@@ -12,7 +12,7 @@ namespace Replug.Patches
         private static void HoverVibrate(MenuButton __instance)
         {
             if (Config.ButtonHoverToggle.Value)
-                ReplugMod.DeviceManager.VibrateAllWithDuration(Config.ButtonHoverIntensity.Value * 5 / 100, 0.1f);
+                ReplugMod.DeviceManager.VibrateAllWithDuration((float)Config.ButtonHoverIntensity.Value / 20, 0.1f);
         }
 
         [HarmonyPatch(typeof(MenuButton), nameof(MenuButton.OnSelectEnd))]
@@ -20,7 +20,7 @@ namespace Replug.Patches
         private static void SelectVibrate(MenuButton __instance)
         {
             if (Config.ButtonSelectToggle.Value)
-                ReplugMod.DeviceManager.VibrateAllWithDuration(Config.ButtonSelectIntensity.Value * 5 / 100, 0.1f);
+                ReplugMod.DeviceManager.VibrateAllWithDuration((float)Config.ButtonSelectIntensity.Value / 20, 0.1f);
         }
     }
 }

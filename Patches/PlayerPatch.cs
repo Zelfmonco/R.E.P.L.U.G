@@ -8,6 +8,7 @@ namespace Replug.Patches
     internal class PlayerPatch
     {
         private static bool canVibeShake;
+        
 
         [HarmonyPatch(typeof(PlayerHealth), nameof(PlayerHealth.Hurt))]
         [HarmonyPostfix]
@@ -19,7 +20,7 @@ namespace Replug.Patches
             }
             else if (Config.HurtToggle.Value)
             {
-                ReplugMod.DeviceManager.VibrateAllWithDuration(Config.HurtIntensity.Value * 5 / 100, 1);
+                ReplugMod.DeviceManager.VibrateAllWithDuration((float)Config.HurtIntensity.Value / 20, 1);
             }
         }
 
@@ -33,7 +34,7 @@ namespace Replug.Patches
             }
             else if (Config.HealToggle.Value)
             {
-                ReplugMod.DeviceManager.VibrateAllWithDuration(Config.HealIntensity.Value * 5 / 100, 0.5f);
+                ReplugMod.DeviceManager.VibrateAllWithDuration((float)Config.HealIntensity.Value, 0.5f);
             }
         }
 
@@ -41,6 +42,7 @@ namespace Replug.Patches
         [HarmonyPostfix]
         private static void VibrateCameraShake(CameraShake __instance)
         {
+
             if (__instance.Strength > 4 && Config.CameraShakeToggle.Value)
             {
                 canVibeShake = true;
@@ -51,18 +53,18 @@ namespace Replug.Patches
                 ReplugMod.DeviceManager.StopAllDevices();
             }
 
-            if (canVibeShake)
+            if (canVibeShake && !ReplugMod.DeviceManager.isVibing)
             {
-                ReplugMod.DeviceManager.VibrateAllDevices((__instance.Strength * Config.CameraShakeIntensity.Value) / 6 * 5 / 100); 
+                ReplugMod.DeviceManager.VibrateAllDevices((__instance.Strength * (float)Config.CameraShakeIntensity.Value) / 600);
             }
         }
 
         [HarmonyPatch(typeof(PlayerAvatar), nameof(PlayerAvatar.StandToCrouch))]
         [HarmonyPostfix]
         private static void VibrateOnCrouch(PlayerAvatar __instance)
-        { 
+        {
             if (Config.CrouchStandToggle.Value)
-                ReplugMod.DeviceManager.VibrateAllWithDuration(Config.CrouchStandIntensity.Value * 5 / 100, 0.25f);
+                ReplugMod.DeviceManager.VibrateAllWithDuration((float)Config.CrouchStandIntensity.Value / 20, 0.25f);
         }
 
         [HarmonyPatch(typeof(PlayerAvatar), nameof(PlayerAvatar.CrouchToStand))]
@@ -70,7 +72,7 @@ namespace Replug.Patches
         private static void VibrateOnStand(PlayerAvatar __instance)
         {
             if (Config.CrouchStandToggle.Value)
-                ReplugMod.DeviceManager.VibrateAllWithDuration(Config.CrouchStandIntensity.Value * 5 / 100, 0.25f);
+                ReplugMod.DeviceManager.VibrateAllWithDuration((float)Config.CrouchStandIntensity.Value / 20, 0.25f);
         }
     }
 }

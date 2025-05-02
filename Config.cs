@@ -10,8 +10,6 @@ namespace Replug
 
         internal static ConfigEntry<string> ServerUri { get; set; }
 
-        internal static ConfigEntry<int> VibeAmp { get; set; }
-
         internal static ConfigEntry<int> HurtIntensity { get; set; }
         internal static ConfigEntry<bool> HurtToggle { get; set; }
 
@@ -40,9 +38,7 @@ namespace Replug
 
             ServerUri = ConfigFile.Bind("Connection", "Server URI", "ws://127.0.0.1:12345", "URI for Intiface server");
 
-            VibeAmp = ConfigFile.Bind("Buttplug", "Viberation Amplifier", 100, new ConfigDescription("Overall Vibration Intensity Modifier", new AcceptableValueRange<int>(0,100)));
-
-            HurtIntensity = ConfigFile.Bind("Buttplug", "Hurt Intensity", 15, new ConfigDescription("Hurt intensity setting", new AcceptableValueRange<int>(0, 20)));
+            HurtIntensity = ConfigFile.Bind("Buttplug", "Hurt Intensity", 20, new ConfigDescription("Hurt intensity setting", new AcceptableValueRange<int>(0, 20)));
             HurtToggle = ConfigFile.Bind("Toggles", "Hurt vibrate toggle", true, "Hurt vibration toggle");
 
             HealIntensity = ConfigFile.Bind("Buttplug", "Heal Intensity", 8, new ConfigDescription("Heal intensity setting", new AcceptableValueRange<int>(0, 20)));
