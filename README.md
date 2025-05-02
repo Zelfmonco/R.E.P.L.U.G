@@ -11,5 +11,7 @@ Connect your sex toys to R.E.P.O.!
 - Ability to toggle all options
 - Ability to Adjust all options
 
-**REQUIRES BEPINEX AND REPOLIB AS DEPENDENCIES **
-**REQUIRES INTIFACE CENTERAL TO CONNECT TO DEVICES**
+**REQUIRES BEPINEX AND REPOLIB AS DEPENDENCIES ASWELL AS INTIFACE CENTERAL TO WORK**
+
+https://intiface.com/central/
+
