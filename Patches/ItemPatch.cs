@@ -14,9 +14,5 @@ namespace Replug.Patches
             if (Config.GunToggle.Value)
                 ReplugMod.DeviceManager.VibrateAllWithDuration((float)Config.GunIntensity.Value / 20, 0.25f);
         }
-
-
-
-
     }
 }

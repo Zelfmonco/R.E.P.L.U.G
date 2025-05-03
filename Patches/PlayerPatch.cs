@@ -8,7 +8,6 @@ namespace Replug.Patches
     internal class PlayerPatch
     {
         private static bool canVibeShake;
-        
 
         [HarmonyPatch(typeof(PlayerHealth), nameof(PlayerHealth.Hurt))]
         [HarmonyPostfix]
@@ -73,6 +72,14 @@ namespace Replug.Patches
         {
             if (Config.CrouchStandToggle.Value)
                 ReplugMod.DeviceManager.VibrateAllWithDuration((float)Config.CrouchStandIntensity.Value / 20, 0.25f);
+        }
+
+        [HarmonyPatch(typeof(ValuableDiscover), nameof(ValuableDiscover.New))]
+        [HarmonyPostfix]
+        private static void VibrateOnDiscoverValuable(ValuableDiscoverGraphic __instance)
+        {
+            if (Config.DiscoverValuableToggle.Value)
+                ReplugMod.DeviceManager.VibrateAllWithDuration((float)Config.DiscoverValuableIntensity.Value / 20, 0.25f);
         }
     }
 }

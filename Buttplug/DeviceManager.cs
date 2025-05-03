@@ -30,7 +30,8 @@ namespace Replug
             {
                 await ButtplugClient.ConnectAsync(new ButtplugWebsocketConnector(new Uri(Config.ServerUri.Value)));
 
-                await ButtplugClient.StartScanningAsync();
+                if (Connected())
+                    await ButtplugClient.StartScanningAsync();
             }
             catch (ButtplugClientConnectorException ex)
             {
