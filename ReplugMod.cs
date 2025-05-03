@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
+using REPOLib.Commands;
 using UnityEngine;
 
 namespace Replug;
@@ -19,8 +20,8 @@ public class ReplugMod : BaseUnityPlugin
 
     private void Awake()
     {
-        Instance = this; 
-        
+        Instance = this;
+
         // Prevent the plugin from being deleted
         this.gameObject.transform.parent = null;
         this.gameObject.hideFlags = HideFlags.HideAndDontSave;
@@ -34,6 +35,14 @@ public class ReplugMod : BaseUnityPlugin
         harmony.PatchAll(typeof(Patches.MenuPatch));
 
         Logger.LogInfo($"{Info.Metadata.GUID} v{Info.Metadata.Version} has loaded!");
-    } 
+    }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.C))
+        {
+            DeviceManager.Connect();
+            Debug.Log("retrying connection");
+        }
+    }
 }

@@ -31,6 +31,10 @@ namespace Replug
         internal static ConfigEntry<int> ButtonSelectIntensity { get; set; }
         internal static ConfigEntry<bool> ButtonSelectToggle { get; set; }
 
+        internal static ConfigEntry<int> DiscoverValuableIntensity { get; set; }
+        internal static ConfigEntry<bool> DiscoverValuableToggle { get; set; }
+
+
 
         static Config()
         {
@@ -58,6 +62,9 @@ namespace Replug
 
             ButtonSelectIntensity = ConfigFile.Bind("Buttplug", "Select button intensity", 1, new ConfigDescription("Button select intensity setting", new AcceptableValueRange<int>(0, 20)));
             ButtonSelectToggle = ConfigFile.Bind("Toggles", "Select button vibration toggle", true);
+
+            DiscoverValuableIntensity = ConfigFile.Bind("Buttplug", "Discover valuable intensity", 2, new ConfigDescription("Discover valuable intensity setting", new AcceptableValueRange<int>(0, 20)));
+            DiscoverValuableToggle = ConfigFile.Bind("Toggles", "Discover valuable toggle", true);
         }
     }
 }
