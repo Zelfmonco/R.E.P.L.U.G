@@ -1,5 +1,5 @@
 # R.E.P.L.U.G
-## Version 1.1.0
+## Version 1.2.0
 Connect your sex toys to R.E.P.O.!
 
 ### Options
@@ -9,6 +9,7 @@ Connect your sex toys to R.E.P.O.!
 - Vibrate on hovering and clicking menu buttons
 - Vibrate on gunshot
 - Vibrate on item discovery
+    - With scaling loot options
 - Ability to toggle all options through config
 - Ability to Adjust all options through config
 
@@ -29,4 +30,3 @@ Connect your sex toys to R.E.P.O.!
 https://intiface.com/central/
 https://github.com/buttplugio/buttplug-csharp
 https://github.com/BepInEx/BepInEx
-
