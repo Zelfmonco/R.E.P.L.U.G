@@ -1,7 +1,5 @@
 ﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using UnityEngine;
 
 namespace Replug.Patches
 {
@@ -76,10 +74,40 @@ namespace Replug.Patches
 
         [HarmonyPatch(typeof(ValuableDiscover), nameof(ValuableDiscover.New))]
         [HarmonyPostfix]
-        private static void VibrateOnDiscoverValuable(ValuableDiscoverGraphic __instance)
+        private static void VibrateOnDiscoverValuable(ValuableDiscover __instance, PhysGrabObject _target)
         {
-            if (Config.DiscoverValuableToggle.Value)
-                ReplugMod.DeviceManager.VibrateAllWithDuration((float)Config.DiscoverValuableIntensity.Value / 20, 0.25f);
+            if (!Config.DiscoverValuableToggle.Value)
+                return;
+
+            float intensity;
+
+            if (Config.DiscoverValuableScalesWithValue.Value)
+            {
+                if (!_target)
+                    return;
+
+                ValuableObject valuableObject = _target.transform.GetComponent<ValuableObject>();
+
+                if (!valuableObject || valuableObject.discovered == false)
+                    return;
+
+                float itemValue = valuableObject.dollarValueCurrent;
+
+                float minValue = Config.DiscoverValuableMinValue.Value;
+                float maxValue = Config.DiscoverValuableMaxValue.Value;
+
+                float minIntensity = Config.DiscoverValuableMinIntensity.Value;
+                float maxIntensity = Config.DiscoverValuableMaxIntensity.Value;
+
+                float t = Mathf.Clamp01((itemValue - minValue) / (maxValue - minValue));
+                intensity = Mathf.Lerp(minIntensity, maxIntensity, t);
+            }
+            else
+            {
+                intensity = Config.DiscoverValuableIntensity.Value;
+            }
+
+            ReplugMod.DeviceManager.VibrateAllWithDuration(intensity / 20f, 0.25f);
         }
     }
 }
