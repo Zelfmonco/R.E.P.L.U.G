@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Replug;
 
-[BepInPlugin("Zelfmonco.Replug", "Replug", "1.0")]
+[BepInPlugin("Zelfmonco.Replug", "Replug", "1.2.0")]
 [BepInDependency(REPOLib.MyPluginInfo.PLUGIN_GUID, BepInDependency.DependencyFlags.HardDependency)]
 
 public class ReplugMod : BaseUnityPlugin

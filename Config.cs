@@ -1,6 +1,5 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
-using System;
 
 namespace Replug
 {
@@ -33,8 +32,11 @@ namespace Replug
 
         internal static ConfigEntry<int> DiscoverValuableIntensity { get; set; }
         internal static ConfigEntry<bool> DiscoverValuableToggle { get; set; }
-
-
+        internal static ConfigEntry<bool> DiscoverValuableScalesWithValue { get; set; } 
+        internal static ConfigEntry<int> DiscoverValuableMinValue { get; set; } 
+        internal static ConfigEntry<int> DiscoverValuableMaxValue { get; set; } 
+        internal static ConfigEntry<int> DiscoverValuableMinIntensity { get; set; } 
+        internal static ConfigEntry<int> DiscoverValuableMaxIntensity { get; set; } 
 
         static Config()
         {
@@ -65,6 +67,11 @@ namespace Replug
 
             DiscoverValuableIntensity = ConfigFile.Bind("Buttplug", "Discover valuable intensity", 2, new ConfigDescription("Discover valuable intensity setting", new AcceptableValueRange<int>(0, 20)));
             DiscoverValuableToggle = ConfigFile.Bind("Toggles", "Discover valuable toggle", true);
+            DiscoverValuableScalesWithValue = ConfigFile.Bind("Toggles", "Discover valuable scales toggle", true, new ConfigDescription("Discover valuable scales intensity by value setting")); 
+            DiscoverValuableMinValue = ConfigFile.Bind("Buttplug", "Discover valuable min", 1000, new ConfigDescription("Minimum item value that triggers vibration scaling", new AcceptableValueRange<int>(0, 50000))); 
+            DiscoverValuableMaxValue = ConfigFile.Bind("Buttplug", "Discover valuable max", 30000, new ConfigDescription("Maximum item value used to scale vibration intensity", new AcceptableValueRange<int>(0, 50000))); 
+            DiscoverValuableMinIntensity = ConfigFile.Bind("Buttplug", "Discover intensity min", 2, new ConfigDescription("Vibration intensity at the minimum item value", new AcceptableValueRange<int>(0, 20))); 
+            DiscoverValuableMaxIntensity = ConfigFile.Bind("Buttplug", "Discover intensity max", 18, new ConfigDescription("Vibration intensity at the maximum item value", new AcceptableValueRange<int>(0, 20))); 
         }
     }
 }
